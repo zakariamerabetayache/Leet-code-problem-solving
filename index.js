@@ -25,41 +25,31 @@ function twoSumHM(nums, target) {
 
 }
 const twoSumElement = document.getElementById("twosum");
-twoSumElement.innerHTML = twoSumHM([2, 7, 4], 9);
+// twoSumElement.innerHTML = twoSumHM([2, 7, 4], 9);
 
 // 2 Best Time to Buy and Sell Stock 
 
+
+// the used method called gready algorithem 
+
 function maxProfit(prices) {
+    let minPrice = Infinity
+    let maxprofit = 0
+    for (let i = 0; i < prices.length; i++) {
+        if (prices[i] < minPrice) {
+            minPrice = prices[i]
+        }
+        let profit = prices[i] - minPrice
+        if (profit > maxprofit) {
+            maxprofit = profit
 
-    let oldprices = [...prices]
-    let sortprices = prices.sort((a, b) => a - b);
-    let min = sortprices[0]
-
-    while (oldprices.indexOf(min) == oldprices.length - 1) {
-        oldprices = oldprices.slice(0, -1)
-        sortprices = prices.sort((a, b) => a - b)
-        min = sortprices[0 + 1]
+        }
     }
-
-
-    let minrealindex = oldprices.indexOf(min)
-
-    let whatLeft = oldprices.slice(minrealindex)
-    let sortwhatLeft = whatLeft.sort((a, b) => b - a);
-
-    console.log(sortprices)
-
-
-    if (whatLeft.lenght == 0) {
-        return 0
-    } else {
-        return sortwhatLeft[0] - min
-    }
-
+    return maxprofit
 
 
 }
 console.log(maxProfit([2, 4, 1]))
 const maxProfitElement = document.getElementById("maxProfit");
-// maxProfitElement.innerHTML = maxProfit([7, 1, 5, 3, 6, 4])
+maxProfitElement.textContent = maxProfit([7, 1, 5, 3, 6, 4]);
 
