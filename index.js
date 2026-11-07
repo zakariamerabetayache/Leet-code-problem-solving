@@ -53,7 +53,25 @@ console.log(maxProfit([2, 4, 1]))
 const maxProfitElement = document.getElementById("maxProfit");
 maxProfitElement.textContent = maxProfit([7, 1, 5, 3, 6, 4]);
 
-// 3 // 20. Valid Parentheses  
+// 3 // 20. Valid Parentheses 
+
+// solution 1 last in, first out” (LIFO)
+
+function isValid(s) {
+    const stack = [];
+    const pairs = { ")": "(", "]": "[", "}": "{" };
+
+    for (const ch of s) {
+        if (ch === "(" || ch === "[" || ch === "{") {
+            stack.push(ch);                         // opener: remember it
+        } else {
+            if (stack.pop() !== pairs[ch]) return false;   // closer: must match the latest opener
+        }
+    }
+    return stack.length === 0;                  // nothing left unclosed
+}
+
+//  solution of mine first try 
 
 function isValid(s) {
     let open = ["(", "{", "["]
