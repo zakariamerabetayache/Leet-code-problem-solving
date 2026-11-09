@@ -91,15 +91,12 @@ function isValid(s) {
     let type3count = 0
     for (let i = 0; i < arr.length; i++) {
         if (type1.includes(arr[i])) {
-            return true
-        }
-        else if (type2.includes(arr[i])) {
             type1count = type1count + 1
         }
-        else if (type3.includes(arr[i])) {
+        else if (type2.includes(arr[i])) {
             type2count = type2count + 1
         }
-        else {
+        else if (type3.includes(arr[i])) {
             type3count = type3count + 1
         }
         if (open.includes(arr[i])) {
@@ -145,14 +142,41 @@ function isValid(s) {
     }
     return true
 
-
-
-
-
-    console.log("openCount", openCount)
-    console.log("closedCount", closedCount)
-
 }
 
-console.log(isValid("([{}]{})"))
 
+// 4 // 125. Valid Palindrome
+
+function isPalindrome(word) {
+
+    let word1;
+    let word2;
+
+    word = word.split("")
+    let newword = []
+    for (let i = 0; i < word.length; i++) {
+        if (/^[a-zA-Z0-9]$/.test(word[i])) {
+            newword.push(word[i]);
+        }
+    }
+    word = newword
+    let wordLength = word.length
+    word = word.join("")
+    if (wordLength % 2 === 0) {
+        word1 = word.slice(0, (wordLength / 2))
+        word2 = word.slice((wordLength / 2)).split("").reverse().join("")
+    } else {
+        word1 = word.slice(0, (wordLength / 2))
+        word2 = word.slice((wordLength / 2) + 1).split("").reverse().join("")
+
+    }
+
+    if (word1.toLowerCase() === word2.toLowerCase()) {
+        return true;
+    }
+    else { return false }
+
+
+
+}
+console.log(isPalindrome("book , a = K oob"))
